@@ -24,19 +24,16 @@ export default function VSCode({ onClose, onMinimize }) {
 
   // Projects with dynamic images
   const projectFiles = {
-   Inventory: {
-    description:
-      "This system is used quarterly to record and track all company items. Each item is scanned using its QR code, and the information is automatically stored in our database. It helps maintain accurate counts and ensures everything is properly documented.",
-images: [
-  `${import.meta.env.BASE_URL}img/projects/inventory1.png`,
-  `${import.meta.env.BASE_URL}img/projects/inventory2.png`,
-  `${import.meta.env.BASE_URL}img/projects/inventory3.png`,
-  `${import.meta.env.BASE_URL}img/projects/inventory4.png`,
-],
-
-
-
-  },
+    Inventory: {
+      description:
+        "This system is used quarterly to record and track all company items. Each item is scanned using its QR code, and the information is automatically stored in our database. It helps maintain accurate counts and ensures everything is properly documented.",
+      images: [
+        "img/projects/inventory1.png",
+        "img/projects/inventory2.png",
+        "img/projects/inventory4.png",
+        "img/projects/inventory3.png",
+      ],
+    },
     "Tube Inspection": {
       description: "A system for managing plastic tube inspections . It begins with an inspection dashboard where users can access and monitor all records. From here, they can add new entries such as Start Point, Mass Production, or End Point inspections, update existing data, and export information including raw data and PIDS for further analysis.",
       images: ["img/projects/tube_inspection4.png", "img/projects/tube_inspection1.png", "img/projects/tube_inspection2.png", "img/projects/tube_inspection5.png", "img/projects/tube_inspection3.png"],
