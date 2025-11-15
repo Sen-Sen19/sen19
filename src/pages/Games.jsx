@@ -38,7 +38,7 @@ export default function Games({ onClose, onMinimize, taskbarHeight = 48 }) {
     { name: "pinotiles", url: "https://sen-sen19.github.io/marcneilsen/pianotiles/", icon: "Grid" },
 { name: "pixel", url: "https://sen-sen19.github.io/marcneilsen/pixel/", icon: "Pencil" },
 
-    { name: "puzzle", url: "https://sen-sen19.github.io/marcneilsen/puzzle/", icon: "Puzzle" },
+    { name: "puzzle", url: "https://sen-sen19.github.io/marcneilsen/sliding_puzzle/", icon: "Puzzle" },
     { name: "snake", url: "https://sen-sen19.github.io/marcneilsen/snake/", icon: "Activity" },
     { name: "typetest", url: "https://sen-sen19.github.io/marcneilsen/typetest/", icon: "Keyboard" },
     { name: "ai_derby", url: "https://sen-sen19.github.io/marcneilsen/ai_derby/", icon: "Cpu" }, 

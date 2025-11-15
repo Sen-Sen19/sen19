@@ -173,13 +173,13 @@ export default function Insenity({ onClose, onMinimize, taskbarHeight = 48 }) {
         {activeTab === "github" ? (
           <div className="w-full">
           <img
-  src="img/projects/github1.png"
+  src="img/projects/github3.png"
   alt="GitHub Part 1"
   onClick={redirectToGitHub}
   className="w-full h-auto object-cover cursor-pointer"
 />
 <img
-  src="img/projects/github2.png"
+  src="img/projects/github4.png"
   alt="GitHub Part 2"
   onClick={redirectToGitHub}
   className="w-full h-auto object-cover cursor-pointer"
