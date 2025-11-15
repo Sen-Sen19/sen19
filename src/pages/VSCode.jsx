@@ -24,52 +24,57 @@ export default function VSCode({ onClose, onMinimize }) {
 
   // Projects with dynamic images
   const projectFiles = {
-    Inventory: {
-      description:
-        "This system is used quarterly to record and track all company items. Each item is scanned using its QR code, and the information is automatically stored in our database. It helps maintain accurate counts and ensures everything is properly documented.",
-      images: [
-        "img/projects/inventory1.png",
-        "img/projects/inventory2.png",
-        "img/projects/inventory4.png",
-        "img/projects/inventory3.png",
-      ],
-    },
+   Inventory: {
+    description:
+      "This system is used quarterly to record and track all company items. Each item is scanned using its QR code, and the information is automatically stored in our database. It helps maintain accurate counts and ensures everything is properly documented.",
+images: [
+  "/sen19/img/projects/inventory1.png",
+  "/sen19/img/projects/inventory2.png",
+  "/sen19/img/projects/inventory4.png",
+  "/sen19/img/projects/inventory3.png",
+],
+
+
+  },
     "Tube Inspection": {
-      description: "Inspect tubes and track their status.",
+      description: "A system for managing plastic tube inspections . It begins with an inspection dashboard where users can access and monitor all records. From here, they can add new entries such as Start Point, Mass Production, or End Point inspections, update existing data, and export information including raw data and PIDS for further analysis.",
       images: ["img/projects/tube_inspection4.png", "img/projects/tube_inspection1.png", "img/projects/tube_inspection2.png", "img/projects/tube_inspection5.png", "img/projects/tube_inspection3.png"],
     },
     "Machine Requirements": {
-      description: "Calculate and manage machine requirements.",
+      description: "MRCS is a module designed to compute machine requirements based on production output. It uses the Manufacturing Engineering Plan as its reference to determine whether a machine’s planned workload, WT (work time), and output need adjustment. This helps ensure machines meet production targets efficiently and stay aligned with the overall manufacturing plan.",
       images: ["img/projects/mrcs3.png", "img/projects/mrcs1.png", "img/projects/mrcs2.png"],
     },
     "FG Loading": {
-      description: "Handle finished goods loading.",
-      images: ["img/projects/fg1.png", "img/projects/fg2.png"],
-    },
+  "description": "A system designed to record all container pallets by simply scanning their barcodes. It streamlines loading activities, ensures accurate tracking, and allows printing of essential ship-out records.",
+  "images": ["img/projects/fg1.png", "img/projects/fg2.png"]
+}
+,
     "IRCS Dashboard": {
-      description: "Overview of IRCS metrics.",
-      images: ["img/projects/ircs1.png" ,"img/projects/ircs2.png"],
-    },
+  "description": "A dashboard designed to visualize Good and NG output per date, section, or line. It provides yearly, weekly, daily, and hourly trends, computes PPM, and highlights main defects and defect sequences based on selected filters.",
+  "images": ["img/projects/ircs1.png", "img/projects/ircs2.png"]
+},
     "Secondary Dashboard": {
-      description: "Overview of secondary processes.",
+      description: "This dashboard automatically calculates the JPH and running output for each process. By analyzing these values—which are updated hourly based on user input—it becomes easier to identify whether a particular process is understaffed or producing an unusually high shot count. This real-time visibility allows the ME to make timely and informed adjustments to manpower allocation or investigate potential issues in the workflow as the system runs. It also simplifies data input and calculations, reducing manual workload and helping prevent downtime. ",
       images: ["img/projects/secondary1.png" ,"img/projects/secondary2.png" ,"img/projects/secondary3.png" ,"img/projects/secondary4.png" ,"img/projects/secondary5.png" ,"img/projects/secondary6.png" ,"img/projects/secondary7.png" ,"img/projects/secondary8.png" ,"img/projects/secondary9.png"],
     },
     "Terminal Comparing": {
-      description: "Compare terminal outputs and logs.",
+      description: "This system automates the verification and tracking of KANBAN QR and TERMINAL BARCODES used in production. By scanning the Kanban QR and terminal barcode, the system automatically fetches related details—such as part code, part name, and quantity—from the FSIB database if the data matches. It also provides real-time alerts whenever mismatched or unregistered data are detected, helping operators quickly identify and resolve scanning issues. Each scan is recorded in the history page, allowingusers to view who performed the scan, along with the exact time, date, and terminal details. This automated process improves traceability, minimizes manual data entry, and ensures data accuracy across the production line—enhancing efficiency, reliability, and overall workflow visibility. ",
       images: ["img/projects/terminal1.png","img/projects/terminal2.png","img/projects/terminal3.png","img/projects/terminal4.png"],
     },
-    "FALP Calendar": {
-      description: "View and manage schedules.",
-      images: ["img/projects/calendar1.png"],
-    },
+   "FALP Calendar": {
+  "description": "A calendar system used to display company announcements, holiday schedules, and important events.",
+  "images": ["img/projects/calendar1.png"]
+}
+,
     "Initial Dashboard": {
       description: "The starting dashboard for operations.",
       images: ["img/projects/initial1.png"],
     },
-    SenTemplate: {
-      description: "Template for your projects or code snippets.",
-      images: ["img/projects/template1.png","img/projects/template2.png"],
-    },
+  "SenTemplate": {
+  "description": "A personal template system designed for faster development, providing ready-made functions, reusable patterns, and quick references to streamline coding.",
+  "images": ["img/projects/template1.png", "img/projects/template2.png"]
+}
+,
   };
 
   const currentProject = projectFiles[activeFile];

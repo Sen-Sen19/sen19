@@ -172,18 +172,19 @@ export default function Insenity({ onClose, onMinimize, taskbarHeight = 48 }) {
       <div className="flex-1 p-6 text-gray-700 overflow-auto">
         {activeTab === "github" ? (
           <div className="w-full">
-            <img
-              src="../../img/github1.png"
-              alt="GitHub Part 1"
-              onClick={redirectToGitHub}
-              className="w-full h-auto object-cover cursor-pointer"
-            />
-            <img
-              src="../../img/github2.png"
-              alt="GitHub Part 2"
-              onClick={redirectToGitHub}
-              className="w-full h-auto object-cover cursor-pointer"
-            />
+          <img
+  src="img/projects/github1.png"
+  alt="GitHub Part 1"
+  onClick={redirectToGitHub}
+  className="w-full h-auto object-cover cursor-pointer"
+/>
+<img
+  src="img/projects/github2.png"
+  alt="GitHub Part 2"
+  onClick={redirectToGitHub}
+  className="w-full h-auto object-cover cursor-pointer"
+/>
+
           </div>
         ) : activeTab !== "google" ? (
           <iframe
