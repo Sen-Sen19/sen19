@@ -28,11 +28,12 @@ export default function VSCode({ onClose, onMinimize }) {
     description:
       "This system is used quarterly to record and track all company items. Each item is scanned using its QR code, and the information is automatically stored in our database. It helps maintain accurate counts and ensures everything is properly documented.",
 images: [
-  "/sen19/img/projects/inventory1.png",
-  "/sen19/img/projects/inventory2.png",
-  "/sen19/img/projects/inventory4.png",
-  "/sen19/img/projects/inventory3.png",
+  `${import.meta.env.BASE_URL}img/projects/inventory1.png`,
+  `${import.meta.env.BASE_URL}img/projects/inventory2.png`,
+  `${import.meta.env.BASE_URL}img/projects/inventory3.png`,
+  `${import.meta.env.BASE_URL}img/projects/inventory4.png`,
 ],
+
 
 
   },

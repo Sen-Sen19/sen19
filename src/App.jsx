@@ -146,7 +146,7 @@ windows[name].open && !windows[name].minimized
       className="w-screen h-screen bg-cover bg-center relative overflow-hidden select-none"
       style={{
         backgroundImage:
-          "url('https://1images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1920&auto=format&fit=crop')",
+          "url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1920&auto=format&fit=crop')",
       }}
       onClick={enableFullscreen}
     >
