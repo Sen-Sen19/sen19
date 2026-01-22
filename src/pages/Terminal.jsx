@@ -22,7 +22,7 @@ export default function Terminal({ onClose, onMinimize, taskbarHeight = 48 }) {
     if (e.key === "Enter") {
       const command = input.trim().toLowerCase();
       setOutput(prev => [...prev, `C:\\> ${input}`]);
-SuperIT4
+
       if (command === "/commands") {
         setOutput(prev => [
           ...prev,

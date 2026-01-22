@@ -52,13 +52,12 @@ export default function VSCode({ onClose, onMinimize }) {
     },
     "Terminal Comparing": {
       description: "This system automates the verification and tracking of KANBAN QR and TERMINAL BARCODES used in production. By scanning the Kanban QR and terminal barcode, the system automatically fetches related details—such as part code, part name, and quantity—from the FSIB database if the data matches. It also provides real-time alerts whenever mismatched or unregistered data are detected, helping operators quickly identify and resolve scanning issues. Each scan is recorded in the history page, allowingusers to view who performed the scan, along with the exact time, date, and terminal details. This automated process improves traceability, minimizes manual data entry, and ensures data accuracy across the production line—enhancing efficiency, reliability, and overall workflow visibility. ",
-      images: ["img/projects/terminal1.png","img/projects/terminal2.png","img/projects/terminal3.png","img/projects/terminal4.png"],
+      images: ["img/projects/terminal2.png","img/projects/terminal1.png","img/projects/terminal3.png","img/projects/terminal4.png"],
     },
    "FALP Calendar": {
-  "description": "A calendar system used to display company announcements, holiday schedules, and important events.",
-  "images": ["img/projects/calendar1.png"]
-}
-,
+  description: "A calendar system used to display company announcements, holiday schedules, and important events.",
+      images: ["img/projects/calendar1.png","img/projects/calendar2.png"],
+    },
     "Initial Dashboard": {
       description: "The starting dashboard for operations.",
       images: ["img/projects/initial1.png"],
