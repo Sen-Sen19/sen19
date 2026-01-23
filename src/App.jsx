@@ -120,7 +120,6 @@ const desktopIcons = [
   { name: "VSCode", img: "https://img.icons8.com/fluency/48/visual-studio-code-2019.png" },
   { name: "Files", img: "https://img.icons8.com/fluency/48/folder-invoices--v2.png" },
   // { name: "Azra", img: "https://img.icons8.com/fluency/48/chatbot.png" }, // 💫 Add this
-  - V `   5
 ];
 
   // 🪟 Render windows with z-index & bring-to-front
