@@ -1,0 +1,397 @@
+<section id="personal-projects" class="lm-section">
+  <div class="lm-orb lm-orb--3" style="top:10%;right:10%;width:280px;height:200px;" aria-hidden="true"></div>
+  <div class="lm-section-inner lm-section-inner--wide">
+    <span class="lm-eyebrow">Side Work</span>
+    <h2 class="lm-section-title">Personal <span class="lm-grad-text">Projects</span></h2>
+    <p class="lm-section-sub">Games and experiments built outside of work — hands-on practice with rendering, physics, and game architecture.</p>
+
+    <div class="pp-grid-wrap" id="pp-grid-wrap">
+      <div class="pp-grid" id="pp-grid"></div>
+      <div class="pp-fade-overlay" id="pp-fade-overlay">
+        <button class="pp-more-btn" id="pp-more-btn" type="button" aria-expanded="false">
+          <span id="pp-more-label">See more projects</span>
+          <svg id="pp-more-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ==================== GRID ==================== */
+.pp-grid-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-top: 36px;
+  transition: max-height 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+
+.pp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+@media (min-width: 860px) {
+  .pp-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ==================== FADE / BLUR VEIL ==================== */
+.pp-fade-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,4,24,0) 0%,
+    rgba(10,4,24,0.30) 35%,
+    rgba(10,4,24,0.62) 75%,
+    rgba(10,4,24,0.78) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+.pp-fade-overlay .pp-more-btn {
+  pointer-events: auto;
+}
+.pp-grid-wrap.is-expanded .pp-fade-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+.pp-grid-wrap.is-hidden-overlay .pp-fade-overlay {
+  display: none;
+}
+
+/* ==================== CARD ==================== */
+.pp-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--gel-bg);
+  border: 1px solid var(--gel-border);
+  box-shadow: var(--gel-shadow);
+  backdrop-filter: var(--gel-blur);
+  -webkit-backdrop-filter: var(--gel-blur);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  transition: transform var(--tr), box-shadow var(--tr);
+}
+.pp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.80), transparent);
+  border-radius: 99px;
+  z-index: 2;
+}
+.pp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(124,58,237,0.22), var(--gel-shadow);
+}
+
+.pp-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: var(--ph-base);
+}
+.pp-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.pp-card:hover .pp-thumb img { transform: scale(1.06); }
+.pp-thumb-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 12px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em;
+  color: var(--c-muted);
+}
+
+.pp-play {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px;
+  background: rgba(10,4,24,0.45);
+  opacity: 0; transition: opacity var(--tr);
+  color: #fff; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+}
+.pp-card:hover .pp-play { opacity: 1; }
+.pp-play svg { flex-shrink: 0; }
+
+.pp-body {
+  padding: 18px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.pp-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+.pp-desc {
+  font-size: 0.83rem;
+  color: var(--c-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+.pp-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 4px;
+}
+
+.pp-link {
+  position: absolute; inset: 0;
+  z-index: 3;
+}
+
+/* ==================== SEE MORE BUTTON ==================== */
+.pp-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--gel-bg);
+  border: 1px solid var(--gel-border);
+  box-shadow: var(--gel-shadow);
+  backdrop-filter: var(--gel-blur);
+  -webkit-backdrop-filter: var(--gel-blur);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+}
+.pp-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(124,58,237,0.28), var(--gel-shadow);
+  border-color: rgba(255,255,255,0.4);
+}
+.pp-more-btn:active { transform: translateY(0); }
+#pp-more-icon {
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.pp-grid-wrap.is-expanded #pp-more-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 700px) {
+  .pp-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pp-body { padding: 14px 14px 16px; }
+  .pp-fade-overlay { height: 180px; }
+}
+@media (max-width: 480px) {
+  .pp-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<script>
+(function () {
+  const PERSONAL_PROJECTS = [
+    {
+      title: "Siege Protocol",
+      desc: "A browser-based FPS built entirely in a single Three.js file — enemy AI, weapon mechanics, and visual polish done from scratch.",
+      tags: ["Three.js", "FPS", "Browser"],
+      thumb: "images/personal/siege-protocol.png",
+      link: "https://sen-sen19.github.io/marcneilsen/fps/"
+    },
+    {
+      title: "Overwatch-style Shooter",
+      desc: "A 3D sniping challenge — track and hit a moving target from long range.",
+      tags: ["Three.js", "Sniper"],
+      thumb: "images/personal/overwatch.png",
+      link: "https://sen-sen19.github.io/marcneilsen/overwatch/"
+    },
+    {
+      title: "Liquid Smoke Simulator",
+      desc: "An interactive WebGL fluid simulation featuring realistic liquid-like smoke and fluid dynamics.",
+      tags: ["WebGL", "Fluid Simulation", "Interactive"],
+      thumb: "images/personal/smoke.png",
+      link: "https://sen-sen19.github.io/marcneilsen/smoke_simultor/"
+    },
+    {
+      title: "Neon Hockey",
+      desc: "A neon air-hockey game featuring AI opponents, fast-paced puck physics, and power-up mechanics.",
+      tags: ["JavaScript", "Canvas", "Game"],
+      thumb: "images/personal/hockey.png",
+      link: "https://sen-sen19.github.io/marcneilsen/hockey/"
+    },
+    {
+      title: "Noise of Panic",
+      desc: "Survive the chaos — react quickly and dodge bullets, lasers, black holes, and unpredictable hazards.",
+      tags: ["JavaScript", "Canvas", "Survival"],
+      thumb: "images/personal/panic.png",
+      link: "https://sen-sen19.github.io/marcneilsen/panic/"
+    },
+    {
+      title: "DART ALLEY",
+      desc: "A simple dart-throwing game — aim carefully and hit the target.",
+      tags: ["JavaScript", "Game"],
+      thumb: "images/personal/dart.png",
+      link: "https://sen-sen19.github.io/marcneilsen/dart/"
+    },
+    {
+      title: "AI SHOOTER",
+      desc: "A fast-paced 3D shootout where you battle an AI enemy that shoots back.",
+      tags: ["Three.js", "AI", "Shooter"],
+      thumb: "images/personal/shoot.png",
+      link: "https://sen-sen19.github.io/marcneilsen/shoot/"
+    },
+    {
+      title: "Entropy Lab",
+      desc: "A 2D sandbox simulator where different elements interact, react, and create unexpected results.",
+      tags: ["JavaScript", "2D Simulator", "Sandbox"],
+      thumb: "images/personal/entropy.png",
+      link: "https://sen-sen19.github.io/marcneilsen/simulator/"
+    },
+    {
+      title: "Snake",
+      desc: "A Snake AI experiment where an unkillable snake follows a Hamiltonian path to survive indefinitely.",
+      tags: ["JavaScript", "AI", "Hamiltonian Path"],
+      thumb: "images/personal/snake.png",
+      link: "https://sen-sen19.github.io/marcneilsen/snake/snake_bot.html"
+    },
+    {
+      title: "Tetris",
+      desc: "Watch an AI play Tetris, making decisions and stacking blocks on its own.",
+      tags: ["JavaScript", "AI", "Tetris"],
+      thumb: "images/personal/tetris.png",
+      link: "https://sen-sen19.github.io/marcneilsen/tetris"
+    },
+    {
+      title: "Tic-Tac-Toe",
+      desc: "Challenge an AI in Tic-Tac-Toe — outsmart it, or watch your chances disappear.",
+      tags: ["JavaScript", "AI", "Game"],
+      thumb: "images/personal/tictactoe.png",
+      link: "https://sen-sen19.github.io/marcneilsen/tictactoe"
+    },
+    {
+      title: "Sliding Puzzle",
+      desc: "A classic sliding puzzle where you rearrange the tiles and race to solve the board.",
+      tags: ["JavaScript", "Puzzle", "Game"],
+      thumb: "images/personal/puzzle.png",
+      link: "https://sen-sen19.github.io/marcneilsen/sliding_puzzle"
+    },
+
+    // add more here, same shape:
+    // { title: "", desc: "", tags: [], thumb: "", link: "" },
+  ];
+
+  const VISIBLE_ROWS = 2.35; // how many rows stay fully sharp before the veil starts
+
+  const grid = document.getElementById('pp-grid');
+  const wrap = document.getElementById('pp-grid-wrap');
+  const overlay = document.getElementById('pp-fade-overlay');
+  const moreBtn = document.getElementById('pp-more-btn');
+  const moreLabel = document.getElementById('pp-more-label');
+  if (!grid) return;
+
+  let expanded = false;
+
+  function cardHTML(p) {
+    const thumb = p.thumb
+      ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+         <div class="pp-thumb-fallback" style="display:none">${p.title}</div>`
+      : `<div class="pp-thumb-fallback">${p.title}</div>`;
+
+    const tags = p.tags.map(t => `<span class="lm-tag">${t}</span>`).join('');
+
+    return `
+      <div class="pp-card">
+        <a class="pp-link" href="${p.link}" target="_blank" rel="noopener" aria-label="Play ${p.title}"></a>
+        <div class="pp-thumb">
+          ${thumb}
+          <div class="pp-play">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Play
+          </div>
+        </div>
+        <div class="pp-body">
+          <div class="pp-title">${p.title}</div>
+          <div class="pp-desc">${p.desc}</div>
+          <div class="pp-tags">${tags}</div>
+        </div>
+      </div>`;
+  }
+
+  function collapsedHeight() {
+    const firstCard = grid.querySelector('.pp-card');
+    if (!firstCard) return 0;
+    const cardH = firstCard.getBoundingClientRect().height;
+    const gap = parseFloat(getComputedStyle(grid).rowGap) || 20;
+    return Math.round(cardH * VISIBLE_ROWS + gap * (VISIBLE_ROWS - 1));
+  }
+
+  function applyCollapsed() {
+    const total = grid.scrollHeight;
+    const target = collapsedHeight();
+    if (total <= target + 40) {
+      // not enough content to bother veiling
+      wrap.classList.add('is-hidden-overlay');
+      wrap.style.maxHeight = 'none';
+      return;
+    }
+    wrap.classList.remove('is-hidden-overlay');
+    wrap.style.maxHeight = target + 'px';
+  }
+
+  function expandGrid() {
+    wrap.style.maxHeight = grid.scrollHeight + 'px';
+    wrap.classList.add('is-expanded');
+    moreBtn.setAttribute('aria-expanded', 'true');
+    moreLabel.textContent = 'See fewer projects';
+    expanded = true;
+    // once fully open, let it breathe (in case of future dynamic resizing)
+    setTimeout(() => { if (expanded) wrap.style.maxHeight = 'none'; }, 720);
+  }
+
+  function collapseGrid() {
+    wrap.style.maxHeight = grid.scrollHeight + 'px'; // lock current height first
+    requestAnimationFrame(() => {
+      wrap.classList.remove('is-expanded');
+      wrap.style.maxHeight = collapsedHeight() + 'px';
+    });
+    moreBtn.setAttribute('aria-expanded', 'false');
+    moreLabel.textContent = 'See more projects';
+    expanded = false;
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  moreBtn.addEventListener('click', () => {
+    if (expanded) collapseGrid();
+    else expandGrid();
+  });
+
+  grid.innerHTML = PERSONAL_PROJECTS.map(cardHTML).join('');
+
+  // wait a tick for layout to settle before measuring
+  requestAnimationFrame(applyCollapsed);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    if (expanded) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyCollapsed, 150);
+  });
+})();
+</script>

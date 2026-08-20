@@ -1,0 +1,174 @@
+<style>
+  .lm-submit-btn{
+  position:relative;
+  overflow:hidden;
+  transition:.35s;
+}
+
+.lm-submit-btn.sending{
+  color:#fff;
+  cursor:not-allowed;
+  animation:pulseBtn 1s infinite;
+}
+
+.lm-submit-btn.sending::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(255,255,255,.25), transparent 30%),
+    radial-gradient(circle at 20% 90%, rgba(0,0,0,.95), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(20,20,20,.95), transparent 40%);
+  filter: blur(12px);
+  animation:blackFlames .8s linear infinite;
+}
+
+.lm-submit-btn.sending::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.08),
+      rgba(0,0,0,.55)
+    );
+}
+
+@keyframes blackFlames{
+  0%{
+    transform:translateY(15%) scale(1);
+  }
+  50%{
+    transform:translateY(-15%) scale(1.1);
+  }
+  100%{
+    transform:translateY(15%) scale(1);
+  }
+}
+
+@keyframes pulseBtn{
+  0%,100%{
+    box-shadow:
+      0 0 15px rgba(0,0,0,.4),
+      0 0 35px rgba(0,0,0,.3);
+  }
+  50%{
+    box-shadow:
+      0 0 30px rgba(0,0,0,.8),
+      0 0 60px rgba(40,40,40,.5);
+  }
+}
+
+</style>
+<section id="contact" class="lm-section">
+  <div class="lm-orb lm-orb--1" style="top:15%;right:5%;width:280px;height:200px;" aria-hidden="true"></div>
+  <div class="lm-orb lm-orb--3" style="bottom:10%;left:10%;width:240px;height:180px;" aria-hidden="true"></div>
+
+  <div class="lm-section-inner">
+    <span class="lm-eyebrow">Get In Touch</span>
+    <h2 class="lm-section-title">Let's <span class="lm-grad-text">Connect</span></h2>
+    <p class="lm-section-sub">Open to freelance, collaboration, or just a good dev chat.</p>
+
+    <form class="lm-gel-blob lm-gel-blob--form" id="contact-form">
+      <div class="lm-form-row">
+        <div class="lm-gel-field">
+          <label class="lm-field-label" for="cf-name">Name</label>
+          <input class="lm-field-input" type="text" id="cf-name" name="name" placeholder="Your name" required/>
+        </div>
+        <div class="lm-gel-field">
+          <label class="lm-field-label" for="cf-email">Email</label>
+          <input class="lm-field-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required/>
+        </div>
+      </div>
+      <div class="lm-gel-field">
+        <label class="lm-field-label" for="cf-subject">Subject</label>
+        <input class="lm-field-input" type="text" id="cf-subject" name="subject" placeholder="What's this about?" required/>
+      </div>
+      <div class="lm-gel-field">
+        <label class="lm-field-label" for="cf-message">Message</label>
+        <textarea class="lm-field-input lm-field-textarea" id="cf-message" name="message" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="lm-gel-btn lm-gel-btn--fill lm-submit-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- EmailJS -->
+<script src="https://unpkg.com/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("JS Loaded");
+
+    emailjs.init({
+        publicKey: "V_gsiWkcacksqKW1x"
+    });
+
+    const form = document.getElementById("contact-form");
+
+    if (!form) {
+        console.error("Form not found!");
+        return;
+    }
+
+    const btn = document.querySelector(".lm-submit-btn");
+    const originalText = btn.innerHTML;
+
+    form.addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        console.log("Form Submitted");
+
+        btn.disabled = true;
+        btn.classList.add("sending");
+        btn.innerHTML = "🔥 Sending Message...";
+
+        try {
+
+            const response = await emailjs.send(
+                "service_1rix5lc",
+                "template_fl7nwhf",
+                {
+                    name: document.getElementById("cf-name").value,
+                    email: document.getElementById("cf-email").value,
+                    subject: document.getElementById("cf-subject").value,
+                    message: document.getElementById("cf-message").value
+                }
+            );
+
+            console.log("SUCCESS:", response);
+
+            btn.classList.remove("sending");
+            btn.innerHTML = "✅ Message Sent";
+
+            alert("Message sent successfully!");
+
+            form.reset();
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }, 2500);
+
+        } catch (error) {
+
+            console.error("EMAILJS ERROR:", error);
+            console.error("STATUS:", error.status);
+            console.error("TEXT:", error.text);
+
+            alert(
+                "EmailJS Error\n\n" +
+                "Status: " + error.status + "\n" +
+                "Message: " + error.text
+            );
+
+            btn.classList.remove("sending");
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        }
+    });
+});
+</script>
